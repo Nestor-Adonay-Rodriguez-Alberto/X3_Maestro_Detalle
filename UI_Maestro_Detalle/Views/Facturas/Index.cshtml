@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Entidades.Factura>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Registro De Facturas</h1><br />
+
+<p>
+    <a asp-action="Create">Nueva Factura</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("FECHA:")
+            </th>
+            <th>
+                @Html.DisplayName("N° FACTURA:")
+            </th>
+            <th>
+                @Html.DisplayName("EMPLEADO:")
+            </th>
+            <th>
+                @Html.DisplayName("CLIENTE")
+            </th>
+            <th>
+                @Html.DisplayName("TOTAL COMPRA:")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correlativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objeto_Empleado.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdFactura">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdFactura">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdFactura">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
